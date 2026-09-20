@@ -1,6 +1,6 @@
 {
   "status": "current",
-  "checked_at": "2026-09-20T20:49:45.719873+00:00",
+  "checked_at": "2026-09-20T20:51:10.231629+00:00",
   "fork": "Elevation-Business-OS/marketingskills",
   "upstream": "coreyhaines31/marketingskills",
   "branch": "main",
@@ -8,5 +8,5 @@
   "revision": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022",
   "upstream_revision": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022",
   "changed": false,
-  "run_url": "https://github.com/Elevation-Business-OS/marketingskills/actions/runs/35536775927"
+  "run_url": "https://github.com/Elevation-Business-OS/marketingskills/actions/runs/35536851150"
 }
