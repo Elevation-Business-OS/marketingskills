@@ -33,12 +33,12 @@ jobs:
           from datetime import datetime, timezone
           from urllib.error import HTTPError
           from urllib.request import Request, urlopen
-          
+
           FORK = "Elevation-Business-OS/marketingskills"
           UPSTREAM = "coreyhaines31/marketingskills"
           CONTROL = "codex/automation"
-          
-          
+
+
           def api(path, method="GET", payload=None):
               request = Request(
                   "https://api.github.com/" + path,
@@ -55,8 +55,8 @@ jobs:
               except HTTPError as error:
                   # Report status and endpoint, never tokens or arbitrary response bodies.
                   raise RuntimeError(f"GitHub {method} {path} returned HTTP {error.code}") from None
-          
-          
+
+
           def sync(call=api, pause=time.sleep):
               if os.environ.get("GITHUB_REPOSITORY") != FORK or os.environ.get("GITHUB_REF") != "refs/heads/" + CONTROL:
                   raise RuntimeError("Unexpected repository or workflow branch; no changes made.")
@@ -83,8 +83,8 @@ jobs:
                   if attempt < 2:
                       pause(2)
               raise RuntimeError("Upstream and fork differ after three attempts; inspect concurrent changes.")
-          
-          
+
+
           def record_success(result, call=api):
               # A small audit commit on the control branch also supplies repository activity
               # when upstream is quiet; main remains an exact upstream reference.
@@ -94,8 +94,8 @@ jobs:
               call(f"repos/{FORK}/contents/{path}", "PUT",
                    {"branch": CONTROL, "sha": current["sha"], "content": encoded,
                     "message": "Record successful weekly upstream check"})
-          
-          
+
+
           if __name__ == "__main__":
               result = sync()
               record_success(result)
